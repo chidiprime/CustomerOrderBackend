@@ -92,6 +92,7 @@ namespace CustomerOrder.Service.Implementation
                 //Get customer record
                 List <CustomerDTO> customer = _unitOfWork.CustomerRepository.Get(x => x.Name.ToLower() ==name.ToLower(),includeProperties:"Addresses,Orders").
                        Select(x=> new CustomerDTO {
+                        Id=x.Id,
                         Name=x.Name,
                         Age=Convert.ToDateTime(x.Age).ToString(),
                         Gender=x.Gender,
