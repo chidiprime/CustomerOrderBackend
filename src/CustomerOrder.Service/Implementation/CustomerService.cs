@@ -85,10 +85,6 @@ namespace CustomerOrder.Service.Implementation
         {
             try
             {
-                var customerobj = _unitOfWork.CustomerRepository.Any(x => x.Name.ToLower() == name.ToLower());
-                if(!customerobj)
-                    return new ResponseModel<List<CustomerDTO>>
-                    { ResponseCode = Constants.NOT_FOUND, ResponseMessage = Constants.CUSTOMER_NOT_FOUND, ResponseData = null };
                 //Get customer record
                 List <CustomerDTO> customer = _unitOfWork.CustomerRepository.Get(x => x.Name.ToLower() ==name.ToLower(),includeProperties:"Addresses,Orders").
                        Select(x=> new CustomerDTO {
